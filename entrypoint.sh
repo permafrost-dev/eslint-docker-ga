@@ -4,4 +4,4 @@ set -e
 
 cd /github/workspace
 
-node /app/action.js $*
+node /app/action.js -- $*
