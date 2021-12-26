@@ -9,8 +9,8 @@ LABEL "repository"="http://github.com/permafrost-dev/eslint-docker-ga"
 LABEL "homepage"="http://github.com/actions"
 LABEL "maintainer"="Patrick Organ <patrick@permafrost.dev>"
 
-RUN npm install -g @typescript-eslint/eslint-plugin @typescript-eslint/parser typescript eslint
 COPY ./src /app
+RUN cd /app && npm ci
 
 ADD entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]

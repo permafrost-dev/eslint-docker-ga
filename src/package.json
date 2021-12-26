@@ -1,0 +1,18 @@
+{
+  "private": true,
+  "name": "eslint-docker-ga",
+  "version": "1.0.0",
+  "description": "Runs ESLint on code",
+  "main": "action.js",
+  "scripts": {
+    "test": "exit 0"
+  },
+  "keywords": [],
+  "author": "Patrick Organ <patrick@permafrost.dev>",
+  "license": "MIT",
+  "dependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.8.0",
+    "@typescript-eslint/parser": "^5.8.0",
+    "eslint": "^8.5.0"
+  }
+}

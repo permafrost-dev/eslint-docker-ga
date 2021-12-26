@@ -6,7 +6,7 @@ const removeOption = (name, args) => args.filter(arg => arg !== `${name}` && arg
 
 const displayEslintVersion = () => {
     process.stdout.write(`ESLint `);
-    runCommand('eslint --version');
+    runCommand('/app/node_modules/.bin/eslint --version');
 
     process.stdout.write(`---\n`);
 }
@@ -47,8 +47,12 @@ if (process.env.DEBUG_ACTION) {
 }
 
 try {
+    // runCommand(`npm install`);
+    //runCommand(`npm install @typescript-eslint/eslint-plugin --save-dev`);
+    //runCommand(`npm install @typescript-eslint/parser --save-dev`);
+
     displayEslintVersion();
-    runCommand(`eslint ${args.join(' ')}`);
+    runCommand(`/app/node_modules/.bin/eslint ${args.join(' ')}`);
 } catch (err) {
     console.log(`eslint failed: ${err.message}`);
 }
