@@ -2,4 +2,6 @@
 
 set -e
 
-echo "TODO: run container commands"
+cd /github/workspace
+
+node /app/action.js $*
