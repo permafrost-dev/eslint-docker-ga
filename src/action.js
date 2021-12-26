@@ -5,13 +5,15 @@ const hasOption = (name, args) => args.includes(name) || args.includes(`--${name
 const removeOption = (name, args) => args.filter(arg => arg !== `${name}` && arg !== `--${name}` && arg !== `-${name}`);
 
 const displayEslintVersion = () => {
-    console.log(`ESLint ${runCommand('eslint --version').trim()}`);
-    console.log('---');
+    process.stdout.write(`ESLint `);
+    runCommand('eslint --version');
+
+    process.stdout.write(`---\n`);
 }
 
 const configurations = {
-    standard: '/app/eslint-default.config.js',
-    typescript: '/app/eslint-typescript.config.js',
+    standard: '/app/.eslintrc-default.config.js',
+    typescript: '/app/.eslintrc-typescript.config.js',
 };
 
 let args = process.argv.slice(2);
