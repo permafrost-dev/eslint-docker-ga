@@ -1,7 +1,64 @@
-# github-action-template-docker
-
+# eslint-docker-ga
 
 Run ESLint on your source code from GitHub workflows
+
+Sample Github workflow (this assumes there is a `.eslintrc.js` file in your repository):
+
+```yaml
+name: Check & fix styling (eslint)
+
+on:
+  push:
+
+jobs:
+  prettier:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.head_ref }}
+
+      - name: Run ESLint
+        uses: permafrost-dev/eslint-docker-ga@main
+        with:
+          args: --config prettier.config.js --fix ./src/**/*
+
+      - name: Commit changes
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: Fix styling
+```
+
+Use a preset configuration by either NOT specifying the `--config` option in `args`, or by specifying `--typescript` to use the TypeScript configuration.
+
+```yaml
+name: Check & fix styling (eslint)
+
+on:
+  push:
+
+jobs:
+  prettier:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.head_ref }}
+
+      - name: Run ESLint
+        uses: permafrost-dev/eslint-docker-ga@main
+        with:
+          args: --typescript --fix ./src/**/*
+
+      - name: Commit changes
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: Fix styling
+```
 
 ## Changelog
 
