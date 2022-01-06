@@ -23,7 +23,7 @@ jobs:
       - name: Run ESLint
         uses: permafrost-dev/eslint-docker-ga@main
         with:
-          args: --config prettier.config.js --fix ./src/**/*
+          args: --fix ./src/**/*
 
       - name: Commit changes
         uses: stefanzweifel/git-auto-commit-action@v4
