@@ -3,4 +3,3 @@ examples
 configure-package.js
 .vscode
 .github
-package-lock.js
