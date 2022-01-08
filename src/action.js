@@ -22,6 +22,18 @@ if (args[0] === '--') {
     args.shift();
 }
 
+if (args[0] === 'none') {
+    args.shift(); //no extra packages to install
+} else {
+    if (args[0].includes('eslint') && args[0].includes('-')) {
+        const packageNames = args[0].split(',').filter(name => name.includes('eslint'));
+        process.chdir('/app');
+        runCommand(`npm i -D ${packageNames.join(' ')}`);
+    }
+}
+
+runCommand(`ln -s /app/node_modules /github/workspace/node_modules`);
+
 if (!hasOption('config', args)) {
     if (hasOption('typescript', args)) {
         args = removeOption('--typescript', args);
@@ -47,12 +59,10 @@ if (process.env.DEBUG_ACTION) {
 }
 
 try {
-    // runCommand(`npm install`);
-    //runCommand(`npm install @typescript-eslint/eslint-plugin --save-dev`);
-    //runCommand(`npm install @typescript-eslint/parser --save-dev`);
-
     displayEslintVersion();
-    runCommand(`/app/node_modules/.bin/eslint ${args.join(' ')}`);
+    runCommand(`/github/workspace/node_modules/.bin/eslint ${args.join(' ')}`);
 } catch (err) {
     console.log(`eslint failed: ${err.message}`);
 }
+
+runCommand(`rm /github/workspace/node_modules`);

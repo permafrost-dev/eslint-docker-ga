@@ -2,10 +2,12 @@
 
 set -e
 
-cd /app
+#cd /app
 
-npm ci
+#npm ci
 
 cd /github/workspace
 
 node /app/action.js -- $*
+
+#rm /github/workspace/node_modules

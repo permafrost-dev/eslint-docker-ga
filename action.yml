@@ -10,6 +10,19 @@ description: 'Run ESLint on your source code from GitHub workflows'
 
 name: 'ESLint Code Lint & Fix'
 
+inputs:
+  packages:  # extra eslint packages
+    description: 'Additional eslint packages to install, comma-separated'
+    required: false
+    default: ''
+
+  args:
+    description: 'Additional arguments to pass'
+    required: false
+    default: '""'
+
 runs:
     using: 'docker'
     image: 'docker://permafrostsoftware/eslint-docker-ga:latest'
+    args:
+      - ${{ inputs.packages }} ${{ inputs.args }}
