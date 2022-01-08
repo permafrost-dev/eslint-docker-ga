@@ -9,8 +9,20 @@ LABEL "repository"="http://github.com/permafrost-dev/eslint-docker-ga"
 LABEL "homepage"="http://github.com/actions"
 LABEL "maintainer"="Patrick Organ <patrick@permafrost.dev>"
 
+#COPY ./src/package.json ./src/package-lock.json ./
+
 COPY ./src /app
-RUN cd /app && npm ci
+
+WORKDIR /app
+
+RUN apk add curl && curl -f https://get.pnpm.io/v6.16.js | node - add --global pnpm && cd /app && pnpm install --prod && pnpm prune --prod && rm -rf ~/.pnpm-store && apk del curl
+
+#RUN  install -g pnpm
+#RUN cd /app && pnpm install --prod && rm -rf ~/.pnpm-store
+
+#RUN ln -s ./node_modules /app/node_modules
+
+##@typescript-eslint/eslint-plugin @typescript-eslint/parser eslint typescript
 
 ADD entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
