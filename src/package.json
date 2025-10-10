@@ -4,7 +4,7 @@
   "description": "Runs ESLint on code",
   "main": "action.js",
   "dependencies": {
-    "@typescript-eslint/eslint-plugin": "^5.9.0",
+    "@typescript-eslint/eslint-plugin": "^5.62.0",
     "@typescript-eslint/parser": "^5.9.0",
     "eslint": "^8.6.0",
     "typescript": "^4.5.4"
